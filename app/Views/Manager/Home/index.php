@@ -4,6 +4,9 @@
 <?php echo $title ?? ''; ?>
 <?php $this->endSection(); ?>
 
+<?php $this->section('styles'); ?>
+<?php $this->endSection(); ?>
+
 
 <?php $this->section('content'); ?>
                 <div class="container-fluid">
