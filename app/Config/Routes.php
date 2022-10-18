@@ -37,6 +37,15 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
+// Rotas para o manager
+if(file_exists($manager = ROOTPATH . 'routes/manager.php')){
+  require $manager;
+}
+
+if(file_exists($api = ROOTPATH . 'routes/api.php')){
+    require $api;
+}
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
