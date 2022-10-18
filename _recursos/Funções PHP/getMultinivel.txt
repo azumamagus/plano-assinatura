@@ -1,0 +1,37 @@
+public function getMultinivel(string $name, $options = [])
+    {
+
+        $array = $this->categoryModel->asArray()->orderBy('id', 'DESC')->findAll();
+
+        $class_form = "";
+        if (isset($options['class'])) {
+            $class_form = $options['class'];
+        }
+
+        $selected = [];
+
+
+        if (isset($options['selected'])) {
+            $selected = is_array($options['selected']) ? $options['selected'] : [$options['selected']];
+        }
+
+        if (isset($options['placeholder'])) {
+            $placeholder = [
+                'id' => '',
+                'name' => $options['placeholder'],
+                'parent_id' => 0
+            ];
+            $array[] = $placeholder;
+        }
+
+        $multiple = '';
+        if (isset($options['multiple'])) {
+            $multiple = 'multiple';
+        }
+
+        $select = '<select class="' . $class_form . '" name="' . $name . '" ' . $multiple . '>';
+        $select .= $this->getMultiLevelOptions($array, 0, [], $selected);
+        $select .= '</select>';
+
+        return $select;
+    }
