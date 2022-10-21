@@ -36,24 +36,53 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="categoryModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Criar Categoria</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+
+                            <?php echo form_open(route_to('categories.create'), ['id' => 'categories-form'], ['id' => '']); ?>
+
+                            <div class="modal-body">
+                                
+                                <div class="mb-3">
+                                    <label for="name" class="form-lavel">Nome</label>
+                                    <input type="text" class="form-control" id="name" name="name">
+                                    <span class="text-danger error-text name"></span>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="parent_id" class="form-lavel">Categoria pai</label>
+                                    
+                                    <!-- Será preenchido pelo javascript -->
+                                    <span id="boxParents"></span>
+
+                                    <span class="text-danger error-text parent_id"></span>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary btn-sm">Salvar</button>
+                            </div>
+                            <?php echo form_close(); ?>
+                        </div>
+                    </div>
+                </div>
+
 <?php $this->endSection(); ?>
 
 <?php $this->section('scripts'); ?>
  
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.12.1/r-2.3.0/datatables.min.js"></script>
 
-<script>
-    $(document).ready(function () {
-        $('#datatable').DataTable({
-            ajax: '<?php echo route_to('categories.get.all'); ?>',
-            columns: [
-                { data: 'id' },
-                { data: 'name' },
-                { data: 'slug' },
-                { data: 'actions' },                
-            ],
-        });
-    });
-</script>
+<?php echo $this->include('Manager/Categories/Scripts/_datatable_all'); ?>
+<?php echo $this->include('Manager/Categories/Scripts/_get_category_info'); ?>
+
 
 <?php $this->endSection(); ?>

@@ -6,5 +6,6 @@ $routes->group('manager', ['namespace' => 'App\Controllers\Manager'], static fun
     $routes->group('categories', function ($routes) {
         $routes->get('/', 'CategoriesController::index', ['as' => 'categories']);
         $routes->get('get-all', 'CategoriesController::getAllCategories', ['as' => 'categories.get.all']);
+        $routes->get('get-info', 'CategoriesController::getAllCategoryInfo', ['as' => 'categories.get.info']);
     });
 });
