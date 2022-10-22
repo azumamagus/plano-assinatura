@@ -49,4 +49,26 @@ abstract class BaseController extends Controller
 
         // E.g.: $this->session = \Config\Services::session();
     }
+
+    protected function removeSpoofingFromRequest()
+    {
+        $data = $this->request->getPost();
+
+        // garantimos o id nunca seja enviado no request, pois usamos ess método para fazer o preenchimento das propriedades dos objetos
+
+        // quando precisamos do id utilizamos o $this->request->getGetPost('id') diretamente
+
+        // Dessa forma garantimos que ao criar um registro não correremos o risco de atualizar algum registro
+
+        // pois utilizamos o método model->save() que avalia se existe no $data uma posição 'id' e opera (insert ou update) de acordo com isso
+
+        unset($data['id']);
+
+        unset($data['_method']);
+
+
+
+        return $data;
+
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Controllers\Manager;
 
 use App\Controllers\BaseController;
+use App\Requests\CategoryRequest;
 use App\Services\CategoryService;
 use CodeIgniter\Config\Factories;
 
@@ -10,10 +11,12 @@ class CategoriesController extends BaseController
 {
 
     private $categoryService;
+    private $categoryRequest;
 
     public function __construct()
     {
       $this->categoryService = Factories::class(CategoryService::class);      
+      $this->categoryService = Factories::class(CategoryRequest::class);      
     }
 
     public function index()
@@ -63,6 +66,12 @@ class CategoriesController extends BaseController
          * @todo validar form
          */
 
+        $this->categoryRequest->validateBeforeSave('category');
         $category = $this->categoryService->getCategory($this->request->getGetPost('id'));
+        $category->fill($this->removeSpoofingFromRequest());
+
+        $this->categoryService->trySaveCategory($category);
+
+        return $this->response->setJSON(['success' => true, 'token' => csrf_hash()]);
     }
 }

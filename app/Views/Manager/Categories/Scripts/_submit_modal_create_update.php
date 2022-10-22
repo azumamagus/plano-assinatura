@@ -1,6 +1,6 @@
 <script>
 
-$('$categories-form').submit(function(e){
+$('#categories-form').submit(function(e){
     e.preventDefault();
 
     var form = this;
