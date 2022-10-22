@@ -68,7 +68,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary btn-sm">Salvar</button>
+                                <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
                             </div>
                             <?php echo form_close(); ?>
                         </div>
@@ -83,6 +83,15 @@
 
 <?php echo $this->include('Manager/Categories/Scripts/_datatable_all'); ?>
 <?php echo $this->include('Manager/Categories/Scripts/_get_category_info'); ?>
+<?php echo $this->include('Manager/Categories/Scripts/_submit_modal_create_update'); ?>
+
+<script>
+    function refreshCSRFToken(token)
+    {
+        $('[name="<?php echo csrf_token(); ?>"]').val(token);
+        $('meta[name="<?php echo csrf_token(); ?>"]').attr('content', token);
+    }
+</script>
 
 
 <?php $this->endSection(); ?>

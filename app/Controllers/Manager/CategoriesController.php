@@ -41,12 +41,28 @@ class CategoriesController extends BaseController
             return redirect()->back();
         }        
            
-        $category = $this->categoryService->getCategory($this->request->getGet('id'));
+        $category = $this->categoryService->getCategory($this->request->getGetPost('id'));
+
+        $options = [
+            'class' => 'form-control',
+            'placeholder' => 'Escolha...',
+            'selected' => !(empty($category->parent_id)) ? $category->parent_id :"",
+        ];
 
         $response = [
             'category' => $category,
+            'parents'  => $this->categoryService->getMultinivel('parent_id', $options),
         ];
 
         return $this->response->setJSON($response);
+    }
+
+    public function update()
+    {
+        /**
+         * @todo validar form
+         */
+
+        $category = $this->categoryService->getCategory($this->request->getGetPost('id'));
     }
 }
