@@ -12,6 +12,7 @@ class CategoriesController extends BaseController
     //Propriedade de categoria
     private $categoryService;
     private $categoryRequest;
+    //Segundo comentraio
 
     public function __construct()
     {
