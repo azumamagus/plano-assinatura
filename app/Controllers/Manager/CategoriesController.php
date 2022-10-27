@@ -9,7 +9,7 @@ use CodeIgniter\Config\Factories;
 
 class CategoriesController extends BaseController
 {
-
+    //Propriedade de categoria
     private $categoryService;
     private $categoryRequest;
 
