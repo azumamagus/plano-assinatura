@@ -13,6 +13,7 @@ class CategoriesController extends BaseController
     private $categoryService;
     private $categoryRequest;
     //Segundo comentraio
+    //terceiro comentário
 
     public function __construct()
     {
