@@ -49,7 +49,7 @@ class MyBaseRequest
             unset($response['token']);
         }
 
-        $this->response->setJSON()->send();
+        $this->response->setJSON()->send($response);
         exit;
     }
 

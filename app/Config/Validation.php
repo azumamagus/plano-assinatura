@@ -41,4 +41,17 @@ class Validation extends BaseConfig
     // --------------------------------------------------------------------
     // Rules
     // --------------------------------------------------------------------
+
+    public $category = [
+        'name'     => 'required|min_length[3]|max_length[90]|is_unique[categories.name,id,{id}]',
+    ];
+
+    public $category_errors = [
+        'name' => [
+            'required'     => 'O nome é obrigatório',
+            'min_length'   => 'Informe pelo menos 3 caractéres no tamanho', 
+            'max_length'   => 'Informe no máximo 90 caractéres no tamanho', 
+            'is_unique'    => 'Essa categorai já existe' ,
+        ],        
+    ];
 }

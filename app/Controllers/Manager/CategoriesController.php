@@ -18,7 +18,7 @@ class CategoriesController extends BaseController
     public function __construct()
     {
       $this->categoryService = Factories::class(CategoryService::class);      
-      $this->categoryService = Factories::class(CategoryRequest::class);      
+      $this->categoryRequest = Factories::class(CategoryRequest::class);      
     }
 
     public function index()
