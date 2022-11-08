@@ -13,6 +13,7 @@
         <link rel="icon" type="image/x-icon" href="<?php echo site_url('manager_assets/assets/favicon.ico'); ?>" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="<?php echo site_url('manager_assets/css/styles.css'); ?>" rel="stylesheet" />
+        <link href="<?php echo site_url('manager_assets/toastr/toastr.min.css'); ?>" rel="stylesheet" />
         <?php echo $this->renderSection('styles'); ?>
     </head>
     <body>
@@ -66,6 +67,8 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="<?php echo site_url('manager_assets/js/scripts.js'); ?>"></script>
+        <script src="<?php echo site_url('manager_assets/toastr/toastr.min.js'); ?>"></script>
         <?php echo $this->renderSection('scripts'); ?>
+       
     </body>
 </html>

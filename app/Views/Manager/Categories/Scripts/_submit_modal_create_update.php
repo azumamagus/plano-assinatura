@@ -20,12 +20,17 @@ $('#categories-form').submit(function(e){
 
             if(response.success == false){
                 
+                
+                toastr.error('Verifique os erros e tente novamente');
+
                 $.each(response.errors, function(field, value){
                     $(form).find('span.' + field).text(value);
                 });
 
                 return;
             }
+
+            toastr.success(response.message);
 
             $('#categoryModal').modal('hide');
 
