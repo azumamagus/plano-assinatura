@@ -19,7 +19,11 @@ $('#categories-form').submit(function(e){
             window.refreshCSRFToken(response.token);
 
             if(response.success == false){
-                alert('erros de validação');
+                
+                $.each(response.errors, function(field, value){
+                    $(form).find('span.' + field).text(value);
+                });
+
                 return;
             }
 

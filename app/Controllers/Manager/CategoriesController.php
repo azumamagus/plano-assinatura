@@ -74,6 +74,6 @@ class CategoriesController extends BaseController
 
         $this->categoryService->trySaveCategory($category);
 
-        return $this->response->setJSON(['success' => true, 'token' => csrf_hash()]);
+        return $this->response->setJSON($this->categoryRequest->respondWithMessage(message: 'Dados Salvos com sucesso!'));
     }
 }
