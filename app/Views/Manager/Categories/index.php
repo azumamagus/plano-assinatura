@@ -19,6 +19,9 @@
                             <div class="card shadow-lg">
                                 <div class="card-header">
                                 <h5><?php echo $title ?? ''; ?></h5>
+
+                                <button id="createCategoryBtn" class="btn btn-success btn-sm float-end">Criar categoria</button>
+
                                 </div>
                                 <div class="card-body">
                                 <table class="table table-borderless table-striped" id="datatable">
@@ -84,6 +87,7 @@
 <?php echo $this->include('Manager/Categories/Scripts/_datatable_all'); ?>
 <?php echo $this->include('Manager/Categories/Scripts/_get_category_info'); ?>
 <?php echo $this->include('Manager/Categories/Scripts/_submit_modal_create_update'); ?>
+<?php echo $this->include('Manager/Categories/Scripts/_show_modal_to_create'); ?>
 
 <script>
     function refreshCSRFToken(token)

@@ -76,4 +76,24 @@ class CategoriesController extends BaseController
 
         return $this->response->setJSON($this->categoryRequest->respondWithMessage(message: 'Dados Salvos com sucesso!'));
     }
+
+    public function getDropdownParents()
+    {        
+        if(! $this->request->isAJAX()){            
+            return redirect()->back();
+        }
+
+        $options = [
+            'class' => 'form-control',
+            'placeholder' => 'Escolha...',
+            'selected' => "",
+        ];
+
+        $response = [            
+            'parents'  => $this->categoryService->getMultinivel('parent_id', $options),
+        ];
+
+        return $this->response->setJSON($response);
+
+    }
 }
