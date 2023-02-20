@@ -24,6 +24,9 @@
 
                                 </div>
                                 <div class="card-body">
+
+                                <a class="btn btn-info btn-sm mt-2 mb-4" href="<?php echo route_to('categories.archived'); ?>">Categorias arquivadas</a>
+
                                 <table class="table table-borderless table-striped" id="datatable">
                                     <thead>
                                         <tr>
@@ -88,6 +91,7 @@
 <?php echo $this->include('Manager/Categories/Scripts/_get_category_info'); ?>
 <?php echo $this->include('Manager/Categories/Scripts/_submit_modal_create_update'); ?>
 <?php echo $this->include('Manager/Categories/Scripts/_show_modal_to_create'); ?>
+<?php echo $this->include('Manager/Categories/Scripts/_archive_category'); ?>
 
 <script>
     function refreshCSRFToken(token)

@@ -28,6 +28,8 @@ abstract class BaseController extends Controller
      */
     protected $request;
 
+    protected $locale;
+
     /**
      * An array of helpers to be loaded automatically upon
      * class instantiation. These helpers will be available
@@ -48,13 +50,15 @@ abstract class BaseController extends Controller
         // Preload any models, libraries, etc, here.
 
         // E.g.: $this->session = \Config\Services::session();
+
+        $this->setUpLanguageOptions($request);
     }
 
     protected function removeSpoofingFromRequest()
     {
         $data = $this->request->getPost();
 
-        // garantimos o id nunca seja enviado no request, pois usamos ess método para fazer o preenchimento das propriedades dos objetos
+        // garantimos o id nunca seja enviado no request, pois usamos esse método para fazer o preenchimento das propriedades dos objetos
 
         // quando precisamos do id utilizamos o $this->request->getGetPost('id') diretamente
 
@@ -70,5 +74,34 @@ abstract class BaseController extends Controller
 
         return $data;
 
+    }
+
+    private function setUpLanguageOptions($request)
+    {
+        $this->locale = $request->getLocale();
+        $view = service('renderer');
+        $view->setVar('locale', $this->locale);
+
+        // Criamos as opções de urls para os idiomas suportados
+        $urls = [
+            'url_en' => site_url($request->uri->setSegment(1, 'en')),
+            'url_es' => site_url($request->uri->setSegment(1, 'es')),
+            'url_pt_br' => site_url($request->uri->setSegment(1, 'pt-BR')),
+        ];
+
+        //Voltamos para o orignial
+        $request->uri->setSegment(1, $this->locale);
+
+        $view->setVar('urls', (object) $urls);
+
+        helper('html');
+
+        $language = match($this->locale){
+            'en' => img('languade/english.png') . ' English',
+            'es' => img('languade/espanhol.png') . ' Espanhol',
+            'pt-BR' => img('languade/brasil.png') . ' Português',
+        };
+
+        $view->setVar('language', $language);
     }
 }

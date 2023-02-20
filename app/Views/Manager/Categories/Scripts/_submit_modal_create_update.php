@@ -36,7 +36,7 @@ $('#categories-form').submit(function(e){
 
             $(form)[0].reset();
 
-            $("#dataTable").DataTable().ajax.reload(null, false);
+            $("#datatable").DataTable().ajax.reload(null, false);
             $('.modal-title').text('Criar categoria');
             $(form).attr('action', '<?php echo route_to('categories.create'); ?>');
             $(form).find('input[name="id"]').val('');

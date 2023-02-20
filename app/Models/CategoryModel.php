@@ -35,12 +35,21 @@ class CategoryModel extends MyBaseModel
 
     // Callbacks
     protected $allowCallbacks = true;
-    protected $beforeInsert   = ['escapeDataXSS'];
+    protected $beforeInsert   = ['escapeDataXSS', 'generateSlug'];
     protected $afterInsert    = [];
-    protected $beforeUpdate   = ['escapeDataXSS'];
+    protected $beforeUpdate   = ['escapeDataXSS', 'generateSlug'];
     protected $afterUpdate    = [];
     protected $beforeFind     = [];
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function generateSlug(array $data) : array
+    {
+        if(isset($data['data']['name'])){
+            $data['data']['slug'] = mb_url_title($data['data']['name'], lowercase:true);
+        }
+
+        return $data;
+    }
 }
