@@ -70,13 +70,13 @@ class CategoriesController extends BaseController
 
         $options = [
             'class' => 'form-control',
-            'placeholder' => 'Escolha...',
+            'placeholder' =>  lang('Categories.label_choose_category'),
             'selected' => !(empty($category->parent_id)) ? $category->parent_id :"",
         ];
 
         $response = [
             'category' => $category,
-            'parents'  => $this->categoryService->getMultinivel('parent_id', $options),
+            'parents'  => $this->categoryService->getMultinivel('parent_id', $options, $category->id),
         ];
 
         return $this->response->setJSON($response);
@@ -90,14 +90,14 @@ class CategoriesController extends BaseController
 
         $this->categoryService->trySaveCategory($category);
 
-        return $this->response->setJSON($this->categoryRequest->respondWithMessage(message: 'Dados Salvos com sucesso!'));
+        return $this->response->setJSON($this->categoryRequest->respondWithMessage(message: lang('App.success_saved')));
     }   
     
     public function archive()
     {
         $this->categoryService->tryArchiveCategory($this->request->getGetPost('id'));
 
-        return $this->response->setJSON($this->categoryRequest->respondWithMessage(message: 'Categoria Arquivada com sucesso!'));
+        return $this->response->setJSON($this->categoryRequest->respondWithMessage(message: lang('App.success_archived')));
     }
 
     public function getDropdownParents()
@@ -108,7 +108,7 @@ class CategoriesController extends BaseController
 
         $options = [
             'class' => 'form-control',
-            'placeholder' => 'Escolha...',
+            'placeholder' => lang('Categories.label_choose_category'),
             'selected' => "",
         ];
 
@@ -124,13 +124,13 @@ class CategoriesController extends BaseController
     {
         $this->categoryService->tryRecoverCategory($this->request->getGetPost('id'));
 
-        return $this->response->setJSON($this->categoryRequest->respondWithMessage(message: 'Categoria recuperada com sucesso!'));
+        return $this->response->setJSON($this->categoryRequest->respondWithMessage(message: lang('App.success_recovered')));
     }
 
     public function delete()
     {
         $this->categoryService->tryDeleteCategory($this->request->getGetPost('id'));
 
-        return $this->response->setJSON($this->categoryRequest->respondWithMessage(message: 'Categoria excluida com sucesso!'));
+        return $this->response->setJSON($this->categoryRequest->respondWithMessage(message: lang('App.success_deleted')));
     }
 }

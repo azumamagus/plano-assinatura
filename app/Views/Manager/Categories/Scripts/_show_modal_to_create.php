@@ -1,9 +1,10 @@
 <script>
     $(document).on('click', '#createCategoryBtn', function () {
 
+        $('input[name="_method"]').remove();
+        
         $('.modal-title').text('Criar categoria'); //mudaremos depois com lang
-        $('#categoryModal').modal('show');
-        $(['name=_method']).remove();
+        $('#categoryModal').modal('show');        
         $('#categories-form')[0].reset();
         $('#categories-form').attr('action', '<?php echo route_to('categories.create'); ?>');
         $('#categories-form').find('span.error.text').text('');

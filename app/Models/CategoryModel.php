@@ -44,7 +44,7 @@ class CategoryModel extends MyBaseModel
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function generateSlug(array $data) : array
+    protected function generateSlug(array $data) : array
     {
         if(isset($data['data']['name'])){
             $data['data']['slug'] = mb_url_title($data['data']['name'], lowercase:true);
@@ -52,4 +52,20 @@ class CategoryModel extends MyBaseModel
 
         return $data;
     }
+
+    public function getParentCategories(int $exceptCategoryID = null) : array
+    {
+        $builder = $this;
+
+        if($exceptCategoryID){
+            $builder->where('id !=', $exceptCategoryID);
+        }
+
+        $builder->orderBy('name', 'ASC');
+        $builder->asArray();
+
+        return $builder->findAll();
+
+    }
+
 }
