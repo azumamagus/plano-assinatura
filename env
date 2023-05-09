@@ -138,3 +138,11 @@
 #--------------------------------------------------------------------
 
 # curlrequest.shareOptions = true
+
+#--------------------------------------------------------------------
+# GERENCIANET
+#--------------------------------------------------------------------
+# GERENCIANET_CLIENT_ID = ''
+# GERENCIANET_CLIENT_SECRET = ''
+# GERENCIANET_CLIENT_SANDBOX = TRUE
+# GERENCIANET_CLIENT_TIMEOUT = 60
